@@ -58,6 +58,7 @@ Pay | {{ config.title }}
     {% endfor %}
 </div>
 
+<script src="{{ get_url(path='js/qrcode.js') }}"></script>
 <script>
 // Copy button functionality
 document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -79,12 +80,11 @@ document.querySelectorAll('.qr-btn').forEach(btn => {
             // Generate QR if not already done
             if (!container.hasChildNodes()) {
                 const address = container.dataset.qrAddress;
-                const img = document.createElement('img');
-                img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(address) + '&bgcolor=1a1a1a&color=e6e8ee';
-                img.alt = 'QR Code for ' + address.substring(0, 8) + '...';
-                img.width = 160;
-                img.height = 160;
-                container.appendChild(img);
+                const qr = qrcode(0, 'M');
+                qr.addData(address);
+                qr.make();
+                const svg = createQrSvg(qr, 160);
+                container.appendChild(svg);
             }
             details.open = true;
             btn.textContent = '[hide]';
@@ -94,6 +94,38 @@ document.querySelectorAll('.qr-btn').forEach(btn => {
         }
     });
 });
+
+function createQrSvg(qr, size) {
+    const count = qr.getModuleCount();
+    const cellSize = size / count;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', size);
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
+
+    // Background
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    bg.setAttribute('width', size);
+    bg.setAttribute('height', size);
+    bg.setAttribute('fill', '#1a1a1a');
+    svg.appendChild(bg);
+
+    // QR modules
+    for (let row = 0; row < count; row++) {
+        for (let col = 0; col < count; col++) {
+            if (qr.isDark(row, col)) {
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', col * cellSize);
+                rect.setAttribute('y', row * cellSize);
+                rect.setAttribute('width', cellSize + 0.5);
+                rect.setAttribute('height', cellSize + 0.5);
+                rect.setAttribute('fill', '#e6e8ee');
+                svg.appendChild(rect);
+            }
+        }
+    }
+    return svg;
+}
 </script>
 {% endfilter %}{% endfilter %}
 {%- endblock -%}
