@@ -21,7 +21,7 @@ document.querySelectorAll('.qr-btn').forEach(btn => {
                 const qr = qrcode(0, 'M');
                 qr.addData(address);
                 qr.make();
-                const svg = createQrSvg(qr, 160);
+                const svg = createQrSvg(qr, 400);
                 container.appendChild(svg);
             }
             details.open = true;
@@ -37,8 +37,7 @@ function createQrSvg(qr, size) {
     const count = qr.getModuleCount();
     const cellSize = size / count;
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', size);
-    svg.setAttribute('height', size);
+    // Let CSS control actual size, viewBox defines coordinate space
     svg.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
 
     // Background
