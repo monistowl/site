@@ -78,6 +78,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
     transition: border-color 0.2s;
 }
 
@@ -184,6 +185,45 @@
 .pay-btn:hover {
     background: var(--border, #333);
     color: var(--text, #e6e8ee);
+}
+
+/* QR Code Foldout */
+.qr-foldout {
+    width: 100%;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border, #333);
+    padding-top: 1rem;
+}
+
+.qr-foldout[open] {
+    display: block;
+}
+
+.qr-foldout:not([open]) {
+    display: none;
+}
+
+.qr-foldout .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    background: var(--border, #333);
+    border-radius: 4px;
+}
+
+.qr-container img {
+    border-radius: 4px;
 }
 
 /* Responsive */
