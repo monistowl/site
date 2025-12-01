@@ -29,3 +29,9 @@ socials = [
     { name = "github", url = "https://github.com/monistowl" },
     { name = "substack", url = "https://monistowl.substack.com" },
 ]
+
+[extra.content_security_policy]
+enable = true
+allowed_domains = [
+    { directive = "img-src", domains = ["'self'", "data:", "api.qrserver.com"] },
+]
