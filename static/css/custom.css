@@ -105,6 +105,11 @@
     color: #00457C;
 }
 
+.pay-icon.venmo {
+    background: rgba(0, 141, 239, 0.2);
+    color: #008CFF;
+}
+
 .pay-icon.cashapp {
     background: rgba(0, 214, 50, 0.2);
     color: #00D632;
