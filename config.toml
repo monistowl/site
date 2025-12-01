@@ -1,0 +1,14 @@
+# Zola configuration
+base_url = "https://monistowl.github.io/site"
+title = "monistowl"
+description = "Personal site and project showcase"
+compile_sass = true
+build_search_index = false
+generate_feeds = false
+
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+
+[extra]
+github_username = "monistowl"

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ config.title }}{% endblock %}</title>
+    <meta name="description" content="{{ config.description }}">
+    <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ get_url(path='/') }}" class="logo">monistowl</a>
+            <div class="nav-links">
+                <a href="{{ get_url(path='/#projects') }}">Projects</a>
+                <a href="https://monistowl.substack.com" target="_blank">Blog</a>
+                <a href="{{ get_url(path='/pay/') }}">Pay</a>
+                <a href="https://github.com/{{ config.extra.github_username }}" target="_blank">GitHub</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ now() | date(format="%Y") }} monistowl</p>
+    </footer>
+</body>
+</html>

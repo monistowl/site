@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>monistowl</h1>
+</section>
+
+<section id="projects" class="projects">
+    <h2>Projects</h2>
+
+    <div class="project-grid">
+        {% for project in section.extra.projects %}
+        <article class="project-card {% if project.featured %}featured{% endif %}">
+            <div class="project-header">
+                <h3><a href="https://github.com/monistowl/{{ project.name }}" target="_blank">{{ project.name }}</a></h3>
+                {% if project.language %}
+                <span class="language {{ project.language | lower }}">{{ project.language }}</span>
+                {% endif %}
+            </div>
+            <p class="description">{{ project.description }}</p>
+            {% if project.stars %}
+            <span class="stars">★ {{ project.stars }}</span>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
