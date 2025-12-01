@@ -3,6 +3,7 @@ title = "monistowl"
 template = "index.html"
 
 [extra]
+stylesheets = ["css/custom.css"]
 projects = [
     { name = "gat", description = "Grid Analysis Toolkit", language = "Rust", stars = 1, featured = true },
     { name = "sol-commons", description = "Solana Commons Stack", language = "Rust", stars = 2, featured = true },

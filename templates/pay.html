@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Pay | {{ config.title }}{% endblock %}
+{%- block title -%}
+Pay | {{ config.title }}
+{%- endblock -%}
 
-{% block content %}
-<section class="pay-hero">
+{%- block main -%}
+{%- filter indent -%}{%- filter indent -%}
+<header class="content">
     <h1>Pay Me</h1>
-</section>
+</header>
 
-<section class="pay-methods">
+<div class="pay-methods">
     {% for method in page.extra.methods %}
     <article class="pay-card">
         <div class="pay-icon {{ method.icon }}">
@@ -36,21 +39,22 @@
         </div>
         <div class="pay-actions">
             {% if method.url %}
-            <a href="{{ method.url }}" target="_blank" class="pay-btn">Open</a>
+            <a href="{{ method.url }}" target="_blank" rel="noopener" class="pay-btn">[open]</a>
             {% endif %}
-            <button class="pay-btn copy-btn" data-copy="{% if method.handle %}{{ method.handle }}{% else %}{{ method.address }}{% endif %}">Copy</button>
+            <button class="pay-btn copy-btn" data-copy="{% if method.handle %}{{ method.handle }}{% else %}{{ method.address }}{% endif %}">[copy]</button>
         </div>
     </article>
     {% endfor %}
-</section>
+</div>
 
 <script>
 document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         navigator.clipboard.writeText(btn.dataset.copy);
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy', 1500);
+        btn.textContent = '[copied!]';
+        setTimeout(() => btn.textContent = '[copy]', 1500);
     });
 });
 </script>
-{% endblock %}
+{% endfilter %}{% endfilter %}
+{%- endblock -%}

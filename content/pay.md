@@ -3,6 +3,7 @@ title = "Pay"
 template = "pay.html"
 
 [extra]
+stylesheets = ["css/custom.css"]
 methods = [
     { name = "PayPal", handle = "@monistowl", hint = "or monistowl@gmail.com", url = "https://paypal.me/monistowl", icon = "paypal" },
     { name = "Cash App", handle = "$monistowl", url = "https://cash.app/$monistowl", icon = "cashapp" },

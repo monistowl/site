@@ -6,9 +6,26 @@ compile_sass = true
 build_search_index = false
 generate_feeds = false
 
+theme = "terminus"
+
 [markdown]
 highlight_code = true
-highlight_theme = "base16-ocean-dark"
+highlight_theme = "monokai"
 
 [extra]
 github_username = "monistowl"
+favicon_emoji = "🦉"
+layout = "center"
+copy_button = true
+
+main_menu = [
+    { name = "projects", url = "/", trailing_slash = true },
+    { name = "blog", url = "https://monistowl.substack.com", new_tab = true },
+    { name = "pay", url = "pay", trailing_slash = true },
+    { name = "github", url = "https://github.com/monistowl", new_tab = true },
+]
+
+socials = [
+    { name = "github", url = "https://github.com/monistowl" },
+    { name = "substack", url = "https://monistowl.substack.com" },
+]
